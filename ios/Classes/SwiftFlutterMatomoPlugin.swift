@@ -20,6 +20,7 @@ public class SwiftFlutterMatomoPlugin: NSObject, FlutterPlugin {
             let siteId = arguments?["siteId"] as? Int
             if(matomoTracker == nil){
                 matomoTracker = MatomoTracker(siteId: "\(siteId)", baseURL: URL(string: url ?? "")!)
+                matomoTracker?.isOptedOut = false
             }
         result("Matomo:: \(url) initialized successfully.")
     }
