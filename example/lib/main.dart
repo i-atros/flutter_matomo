@@ -34,12 +34,12 @@ class _MyAppState extends State<MyApp> {
     });
 
     Future.delayed(Duration(seconds: 6), () async {
-      _matomoStatus = await FlutterMatomo.trackEvent(context, "Sign up button", "Clicked");
+      _matomoStatus = await FlutterMatomo.trackEvent(context, "LOGINN button", "Clicked");
       setState(() {});
     });
 
     Future.delayed(Duration(seconds: 8), () async {
-      _matomoStatus = await FlutterMatomo.trackEventWithName("This uses a name MyApp", "Register button", "Clicked");
+      _matomoStatus = await FlutterMatomo.trackEventWithName("This uses a name MyApp", "LOGIIIN button", "Clicked");
       setState(() {});
     });
 
