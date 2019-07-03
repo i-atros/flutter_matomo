@@ -5,7 +5,7 @@ import 'package:flutter_matomo/flutter_matomo.dart';
 
 void main() => runApp(MyApp());
 
-const URL = 'https://YOUR_URL/piwik.php';
+const URL = 'https://a1.i-atros.com/piwik.php';
 const SITE_ID = 2;
 
 class MyApp extends StatefulWidget {
