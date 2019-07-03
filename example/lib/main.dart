@@ -5,6 +5,9 @@ import 'package:flutter_matomo/flutter_matomo.dart';
 
 void main() => runApp(MyApp());
 
+const URL = 'https://YOUR_URL/piwik.php';
+const SITE_ID = 2;
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -20,7 +23,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initPlatformState() async {
-    _matomoStatus = await FlutterMatomo.initializeTracker('https://a1.i-atros.com/piwik.php', 2);
+
+    _matomoStatus = await FlutterMatomo.initializeTracker(URL, SITE_ID);
     setState(() {});
 
     Future.delayed(Duration(seconds: 2), () async {
