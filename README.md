@@ -19,16 +19,16 @@ samples, guidance on mobile development, and a full API reference.
 
 ## How to use 
 
-####Initialize Matomo/Piwik
+#### Initialize Matomo/Piwik
 
 ```
 await FlutterMatomo.initializeTracker('https://YOUR_URL/piwik.php', SITE_ID);
 ```
 
-######Important: It does not matter if you are using piwik or matomo, you need to append piwik.php and not matomo.php
+###### Important: It does not matter if you are using piwik or matomo, you need to append piwik.php and not matomo.php
 
  
-####Adding a screen open event
+#### Adding a screen open event
 
 If you have the BuildContext this will automatically add the widget name
 
@@ -43,7 +43,7 @@ await FlutterMatomo.trackScreenWithName("SomeWidgetName", "Screen opened");
 ```
 
 
-####Tracking an event
+#### Tracking an event
 
 If you have the BuildContext this will automatically add the widget name
 
@@ -59,7 +59,7 @@ await FlutterMatomo.trackEventWithName("SomeWidgetName", "Sign up button", "Clic
 
 
 
-####Track app download (ONLY ON ANDROID)
+#### Track app download (ONLY ON ANDROID)
 
 ```
 await FlutterMatomo.trackDownload();
@@ -67,7 +67,7 @@ await FlutterMatomo.trackDownload();
 
 
 
-####Track goal with id (ONLY ON ANDROID)
+#### Track goal with id (ONLY ON ANDROID)
 
 ```
 await FlutterMatomo.goal(GOAL_ID);
@@ -75,7 +75,7 @@ await FlutterMatomo.goal(GOAL_ID);
 
 
 
-##Full Example
+## Full Example
 
 ```$xslt
 Future<void> initPlatformState() async {
