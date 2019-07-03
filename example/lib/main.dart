@@ -20,11 +20,16 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initPlatformState() async {
-    String platformVersion;
-    await FlutterMatomo.initializeTracker(
-        'https://a1.i-atros.com/matomo.php', 2);
+    _matomoStatus =  await FlutterMatomo.initializeTracker(
+        'https://a1.i-atros.com/piwik.php', 2);
+    setState(() {});
 
-    Future.delayed(Duration(seconds: 2), () async {
+    Future.delayed(Duration(seconds: 6), () async {
+      _matomoStatus =
+      await FlutterMatomo.trackEvent(context, "Register button", "Clicked");
+      setState(() {});
+    });
+    /* Future.delayed(Duration(seconds: 2), () async {
       _matomoStatus = await FlutterMatomo.trackScreen(context, "Screen opened");
       setState(() {});
     });
@@ -35,11 +40,7 @@ class _MyAppState extends State<MyApp> {
       setState(() {});
     });
 
-    Future.delayed(Duration(seconds: 6), () async {
-      _matomoStatus =
-          await FlutterMatomo.trackEvent(context, "Register button", "Clicked");
-      setState(() {});
-    });
+
 
     Future.delayed(Duration(seconds: 8), () async {
       _matomoStatus = await FlutterMatomo.trackEventWithName(
@@ -55,7 +56,7 @@ class _MyAppState extends State<MyApp> {
     Future.delayed(Duration(seconds: 12), () async {
       _matomoStatus = await FlutterMatomo.trackGoal(1);
       setState(() {});
-    });
+    });*/
 
     if (!mounted) return;
   }
