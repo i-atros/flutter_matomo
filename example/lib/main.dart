@@ -11,7 +11,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _matomoStatus = 'Unknown';
+  String _matomoStatus = 'Starting ...';
 
   @override
   void initState() {
@@ -29,17 +29,17 @@ class _MyAppState extends State<MyApp> {
     });
 
     Future.delayed(Duration(seconds: 4), () async {
-      _matomoStatus = await FlutterMatomo.trackScreenWithName("This uses a name MyApp", "Screen opened");
+      _matomoStatus = await FlutterMatomo.trackScreenWithName("This uses a name MyAppWidget", "Screen opened");
       setState(() {});
     });
 
     Future.delayed(Duration(seconds: 6), () async {
-      _matomoStatus = await FlutterMatomo.trackEvent(context, "LOGINN button", "Clicked");
+      _matomoStatus = await FlutterMatomo.trackEvent(context, "Sign up button", "Clicked");
       setState(() {});
     });
 
     Future.delayed(Duration(seconds: 8), () async {
-      _matomoStatus = await FlutterMatomo.trackEventWithName("This uses a name MyApp", "LOGIIIN button", "Clicked");
+      _matomoStatus = await FlutterMatomo.trackEventWithName("This uses a name MyAppWidget", "LOGIIIN button", "Clicked");
       setState(() {});
     });
 
@@ -66,15 +66,10 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(32.0),
-            child: Text(
-              '$_matomoStatus\n',
-              textAlign: TextAlign.center,
-            ),
+            child: Text(_matomoStatus, textAlign: TextAlign.center),
           ),
         ),
-        floatingActionButton: FloatingActionButton.extended(
-            onPressed: () => FlutterMatomo.dispatchEvents(),
-            label: Text("Dispatch now")),
+        floatingActionButton: FloatingActionButton.extended(onPressed: () => FlutterMatomo.dispatchEvents(), label: Text("Dispatch now")),
       ),
     );
   }
