@@ -54,9 +54,8 @@ class FlutterMatomoPlugin(val activity: Activity, val channel: MethodChannel) : 
             "trackScreen" -> {
                 try {
                     val widgetName = call.argument<String>("widgetName")
-                    val eventName = call.argument<String>("eventName")
-                    TrackHelper.track().screen(widgetName).title(eventName).with(tracker)
-                    result.success("Matomo:: Screen $widgetName with name $eventName sent to ${tracker?.apiUrl}")
+                    TrackHelper.track().screen(widgetName).with(tracker)
+                    result.success("Matomo:: Screen $widgetName sent to ${tracker?.apiUrl}")
                 } catch (e: Exception) {
                     result.success("Matomo:: Failed to track event, did you call initializeTracker ?")
                 }
@@ -81,6 +80,7 @@ class FlutterMatomoPlugin(val activity: Activity, val channel: MethodChannel) : 
             "dispatchEvents" -> {
                 try {
                     tracker?.dispatch()
+                    result.success("Matomo:: Events dispatched to ${tracker?.apiUrl}")
                 } catch (e: Exception) {
                     result.success("Matomo:: Failed to dispatch events, did you call initializeTracker ?")
                 }

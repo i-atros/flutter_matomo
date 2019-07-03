@@ -18,4 +18,3 @@ Matomo tracking for flutter
 
   s.ios.deployment_target = '8.0'
 end
-

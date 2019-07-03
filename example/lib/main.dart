@@ -20,9 +20,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initPlatformState() async {
-    String platformVersion;
-    await FlutterMatomo.initializeTracker(
-        'https://a1.i-atros.com/matomo.php', 2);
+    _matomoStatus = await FlutterMatomo.initializeTracker('https://a1.i-atros.com/piwik.php', 2);
+    setState(() {});
 
     Future.delayed(Duration(seconds: 2), () async {
       _matomoStatus = await FlutterMatomo.trackScreen(context, "Screen opened");
@@ -30,20 +29,17 @@ class _MyAppState extends State<MyApp> {
     });
 
     Future.delayed(Duration(seconds: 4), () async {
-      _matomoStatus = await FlutterMatomo.trackScreenWithName(
-          "This uses a name MyApp", "Screen opened");
+      _matomoStatus = await FlutterMatomo.trackScreenWithName("This uses a name MyApp", "Screen opened");
       setState(() {});
     });
 
     Future.delayed(Duration(seconds: 6), () async {
-      _matomoStatus =
-          await FlutterMatomo.trackEvent(context, "Register button", "Clicked");
+      _matomoStatus = await FlutterMatomo.trackEvent(context, "Sign up button", "Clicked");
       setState(() {});
     });
 
     Future.delayed(Duration(seconds: 8), () async {
-      _matomoStatus = await FlutterMatomo.trackEventWithName(
-          "This uses a name MyApp", "Register button", "Clicked");
+      _matomoStatus = await FlutterMatomo.trackEventWithName("This uses a name MyApp", "Register button", "Clicked");
       setState(() {});
     });
 
