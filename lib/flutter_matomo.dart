@@ -6,10 +6,10 @@ import 'package:flutter/services.dart';
 class FlutterMatomo {
   static const MethodChannel _channel = const MethodChannel('flutter_matomo');
 
-  static Future<String> initializeTracker(String url, int siteID) async {
+  static Future<String> initializeTracker(String url, int siteId) async {
     Map<String, dynamic> args = {};
     args.putIfAbsent('url', () => url);
-    args.putIfAbsent('siteID', () => siteID);
+    args.putIfAbsent('siteId', () => siteId);
     final String version =
         await _channel.invokeMethod('initializeTracker', args);
     return version;

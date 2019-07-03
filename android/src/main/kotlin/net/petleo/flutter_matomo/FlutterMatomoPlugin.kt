@@ -27,11 +27,11 @@ class FlutterMatomoPlugin(val activity: Activity, val channel: MethodChannel) : 
         when (call.method) {
             "initializeTracker" -> {
                 val url = call.argument<String>("url")
-                val siteID = call.argument<Int>("siteID")
+                val siteId = call.argument<Int>("siteId")
                 try {
                     val matomo: Matomo = Matomo.getInstance(activity.applicationContext)
                     if (tracker == null) {
-                        tracker = TrackerBuilder.createDefault(url, siteID ?: 1).build(matomo)
+                        tracker = TrackerBuilder.createDefault(url, siteId ?: 1).build(matomo)
                     }
                     result.success("Matomo:: $url initialized successfully.")
                 } catch (e: Exception) {

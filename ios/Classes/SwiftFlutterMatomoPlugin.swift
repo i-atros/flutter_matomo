@@ -15,12 +15,13 @@ public class SwiftFlutterMatomoPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     if(call.method.elementsEqual("initializeTracker")){
-            let arguments = call.arguments as? NSDictionary
-            let url = arguments?["url"] as? String
-            let siteId = arguments?["siteId"] as? Int
-            if(matomoTracker == nil){
-                matomoTracker = MatomoTracker(siteId: "\(siteId)", baseURL: URL(string: url ?? "")!)
-            }
+        let arguments = call.arguments as? NSDictionary
+        let url = arguments?["url"] as? String
+        let siteId = arguments?["siteId"] as? Int
+//      if(matomoTracker == nil){
+        matomoTracker = MatomoTracker(siteId: String(siteId!), baseURL: URL(string: url ?? "")!)
+        matomoTracker?.logger = DefaultLogger(minLevel: .verbose)
+//      }
         result("Matomo:: \(url) initialized successfully.")
     }
     if(call.method.elementsEqual("trackEvent")){
