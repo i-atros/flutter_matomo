@@ -53,12 +53,13 @@ Replace
 class HomeWidget extends StatefulWidget {
 ...
 ```
-whith this
+with this
 ```$xslt
 class HomeWidget extends TraceableStatefulWidget {
 ...
 ```
 
+Or you can override the tracking name of the widget by overriding the `name` attribute
 ```$xslt
 class HomeWidget extends TraceableStatefulWidget {
   HomeWidget({Key key}) : super(key: key, name: 'ONLY_IF_YOU_WANT_TO_OVERRIDE_THE_WIDGET_NAME');
