@@ -2,7 +2,7 @@
 
 Matomo tracking for flutter
 
-Works on bothAndroid and/or iOS.
+Works on both **Android and/or iOS**.
 
 [Dart package](https://pub.dev/packages/flutter_matomo)
 
@@ -21,25 +21,51 @@ samples, guidance on mobile development, and a full API reference.
 
 #### Initialize Matomo/Piwik
 
-```
+```$xslt
 await FlutterMatomo.initializeTracker('https://YOUR_URL/piwik.php', SITE_ID);
 ```
 
-###### Important: It does not matter if you are using piwik or matomo, you need to append piwik.php and not matomo.php
+ **Important:** It does not matter if you are using piwik or matomo, you need to append **piwik.php and not matomo.php**
 
  
 #### Adding a screen open event
 
 If you have the BuildContext this will automatically add the widget name
 
-```
+```$xslt
 await FlutterMatomo.trackScreen(context, "Screen opened")
 ``` 
 
 If not or you want to enter a custom name then use this 
 
-```
+```$xslt
 await FlutterMatomo.trackScreenWithName("SomeWidgetName", "Screen opened");
+```
+
+#### Extending out of the box TraceableWidgets
+
+You can also use `TraceableStatefulWidget`, `TraceableStatelessWidget` & `TraceableInheritedWidget` Where you get a screen open event with the name of the widget out of the box
+
+##### Example
+
+Replace 
+```$xslt
+class HomeWidget extends StatefulWidget {
+...
+```
+whith this
+```$xslt
+class HomeWidget extends TraceableStatefulWidget {
+...
+```
+
+```$xslt
+class HomeWidget extends TraceableStatefulWidget {
+  HomeWidget({Key key}) : super(key: key, name: 'ONLY_IF_YOU_WANT_TO_OVERRIDE_THE_WIDGET_NAME');
+
+  @override
+  _HomeWidgetState createState() => _HomeWidgetState();
+}
 ```
 
 
@@ -47,13 +73,13 @@ await FlutterMatomo.trackScreenWithName("SomeWidgetName", "Screen opened");
 
 If you have the BuildContext this will automatically add the widget name
 
-```
+```$xslt
 await FlutterMatomo.trackEvent(context, "Sign up button", "Clicked");
 ``` 
 
 If not or you want to enter a custom name then use this 
 
-```
+```$xslt
 await FlutterMatomo.trackEventWithName("SomeWidgetName", "Sign up button", "Clicked");
 ```
 
@@ -61,7 +87,7 @@ await FlutterMatomo.trackEventWithName("SomeWidgetName", "Sign up button", "Clic
 
 #### Track app download (ONLY ON ANDROID)
 
-```
+```$xslt
 await FlutterMatomo.trackDownload();
 ``` 
 
@@ -69,7 +95,7 @@ await FlutterMatomo.trackDownload();
 
 #### Track goal with id (ONLY ON ANDROID)
 
-```
+```$xslt
 await FlutterMatomo.goal(GOAL_ID);
 ```
 
@@ -116,4 +142,6 @@ Future<void> initPlatformState() async {
     if (!mounted) return;
   }
 ``` 
+
+
 

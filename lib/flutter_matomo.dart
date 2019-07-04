@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 class FlutterMatomo {
   static const MethodChannel _channel = const MethodChannel('flutter_matomo');
@@ -10,8 +11,7 @@ class FlutterMatomo {
     Map<String, dynamic> args = {};
     args.putIfAbsent('url', () => url);
     args.putIfAbsent('siteId', () => siteId);
-    final String version =
-        await _channel.invokeMethod('initializeTracker', args);
+    final String version = await _channel.invokeMethod('initializeTracker', args);
     return version;
   }
 
@@ -20,8 +20,7 @@ class FlutterMatomo {
     return version;
   }
 
-  static Future<String> trackEvent(
-      BuildContext context, String eventName, String eventAction) async {
+  static Future<String> trackEvent(BuildContext context, String eventName, String eventAction) async {
     var widgetName = context.widget.toStringShort();
     Map<String, dynamic> args = {};
     args.putIfAbsent('widgetName', () => widgetName);
@@ -31,8 +30,7 @@ class FlutterMatomo {
     return version;
   }
 
-  static Future<String> trackEventWithName(
-      String widgetName, String eventName, String eventAction) async {
+  static Future<String> trackEventWithName(String widgetName, String eventName, String eventAction) async {
     Map<String, dynamic> args = {};
     args.putIfAbsent('widgetName', () => widgetName);
     args.putIfAbsent('eventName', () => eventName);
@@ -41,8 +39,7 @@ class FlutterMatomo {
     return version;
   }
 
-  static Future<String> trackScreen(
-      BuildContext context, String eventName) async {
+  static Future<String> trackScreen(BuildContext context, String eventName) async {
     var widgetName = context.widget.toStringShort();
     Map<String, dynamic> args = {};
     args.putIfAbsent('widgetName', () => widgetName);
@@ -51,8 +48,7 @@ class FlutterMatomo {
     return version;
   }
 
-  static Future<String> trackScreenWithName(
-      String widgetName, String eventName) async {
+  static Future<String> trackScreenWithName(String widgetName, String eventName) async {
     Map<String, dynamic> args = {};
     args.putIfAbsent('widgetName', () => widgetName);
     args.putIfAbsent('eventName', () => eventName);
@@ -70,5 +66,47 @@ class FlutterMatomo {
     args.putIfAbsent('goalId', () => goalId);
     final String version = await _channel.invokeMethod('trackGoal', args);
     return version;
+  }
+}
+
+abstract class TraceableStatelessWidget extends StatelessWidget {
+  final String name;
+  final String title;
+
+  TraceableStatelessWidget({this.name = '', this.title = 'WidgetCreated', Key key}) : super(key: key);
+
+  @override
+  StatelessElement createElement() {
+    FlutterMatomo.trackScreenWithName(this.name.isEmpty ? this.runtimeType.toString() : this.name, this.title);
+    FlutterMatomo.dispatchEvents();
+    return StatelessElement(this);
+  }
+}
+
+abstract class TraceableStatefulWidget extends StatefulWidget {
+  final String name;
+  final String title;
+
+  TraceableStatefulWidget({this.name = '', this.title = 'WidgetCreated', Key key}) : super(key: key);
+
+  @override
+  StatefulElement createElement() {
+    FlutterMatomo.trackScreenWithName(this.name.isEmpty ? this.runtimeType.toString() : this.name, this.title);
+    FlutterMatomo.dispatchEvents();
+    return StatefulElement(this);
+  }
+}
+
+abstract class TraceableInheritedWidget extends InheritedWidget {
+  final String name;
+  final String title;
+
+  TraceableInheritedWidget({this.name = '', this.title = 'WidgetCreated', Key key, Widget child}) : super(key: key, child: child);
+
+  @override
+  InheritedElement createElement() {
+    FlutterMatomo.trackScreenWithName(this.name.isEmpty ? this.runtimeType.toString() : this.name, this.title);
+    FlutterMatomo.dispatchEvents();
+    return InheritedElement(this);
   }
 }
