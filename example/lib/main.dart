@@ -23,7 +23,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initPlatformState() async {
-
     _matomoStatus = await FlutterMatomo.initializeTracker(URL, SITE_ID);
     setState(() {});
 
