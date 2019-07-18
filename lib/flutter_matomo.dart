@@ -110,3 +110,15 @@ abstract class TraceableInheritedWidget extends InheritedWidget {
     return InheritedElement(this);
   }
 }
+
+abstract class TraceableState<T extends TraceableStatefulWidget> extends State {
+  DateTime openedAt = DateTime.now();
+  @override
+  T get widget => super.widget;
+
+  @override
+  void dispose() {
+    int secondsSpent = DateTime.now().difference(openedAt).inSeconds;
+    super.dispose();
+  }
+}
