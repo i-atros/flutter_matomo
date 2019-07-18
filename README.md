@@ -2,7 +2,7 @@
 
 Matomo tracking for flutter
 
-Works on both **Android and/or iOS**.
+Works on both **Android and/or iOS**. Version 1.1.4 supports AndroidX.  
 
 [Dart package](https://pub.dev/packages/flutter_matomo)
 
