@@ -8,15 +8,6 @@ Works on both **Android and/or iOS**. Version 1.1.4 supports AndroidX.
 
 [Gitlab link](https://gitlab.com/petleo-and-iatros-opensource/flutter_matomo)
 
-## About
-
-Matomo/Piwik tracking for flutter, this library is based on the android and the ios libraries provided by the Matomo team.
-[Matomo Android](https://github.com/matomo-org/matomo-sdk-android/),
-
-For help getting started with Flutter, view our 
-[Matomo iOS](https://github.com/matomo-org/matomo-sdk-ios), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-
 ## How to use 
 
 #### Initialize Matomo/Piwik
