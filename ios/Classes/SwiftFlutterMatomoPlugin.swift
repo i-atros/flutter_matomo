@@ -8,7 +8,7 @@ public class SwiftFlutterMatomoPlugin: NSObject, FlutterPlugin {
   var matomoTracker: MatomoTracker? = nil
     
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "flutter_matomo", binaryMessenger: registrar.messenger())
+    let channel = FlutterpMethodChannel(name: "flutter_matomo", binaryMessenger: registrar.messenger())
     let instance = SwiftFlutterMatomoPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
