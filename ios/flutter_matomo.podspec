@@ -15,7 +15,7 @@ Matomo tracking for flutter
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'MatomoTracker'
+  s.dependency 'MatomoTracker', '> 7'
 
   s.ios.deployment_target = '8.0'
 end
